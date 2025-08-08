@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h2>My Learning Recommendations</h2>
+  <div class="card">
+    <div class="card-header">
+      <h4>{{ skill|capfirst }} → {{ goal }}</h4>
+    </div>
+    <div class="card-body">
+      <h5>Recommended Learning Path:</h5>
+      <ul class="list-group list-group-flush">
+        {% for course in recommended_path %}
+          <li class="list-group-item">{{ course }}</li>
+        {% endfor %}
+      </ul>
+      
+      {% if courses %}
+      <h5 class="mt-4">Available Courses:</h5>
+      <ul class="list-group list-group-flush">
+        {% for course in courses %}
+          <li class="list-group-item">{{ course }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+  
+  <div class="mt-4">
+    <a href="{% url 'home' %}" class="btn btn-primary">Back to Home</a>
+  </div>
+</div>
+{% endblock %}

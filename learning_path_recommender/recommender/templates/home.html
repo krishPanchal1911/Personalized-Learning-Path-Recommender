@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4">🎯 Get Your Personalized Learning Path</h2>
+
+  <form action="{% url 'recommend_path' %}" method="get">
+    <div class="form-group">
+      <label for="skill">Select a Skill:</label>
+      <select class="form-control" name="skill" id="skill" required>
+        <option value="" disabled selected>Choose your skill</option>
+        {% for s in skills %}
+        <option value="{{ s }}">{{ s|capfirst }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="goal">Select Your Goal:</label>
+      <select class="form-control" name="goal" id="goal" required>
+        <option value="" disabled selected>Choose your goal</option>
+        <option value="Full Stack Developer">Full Stack Developer</option>
+        <option value="Frontend Developer">Frontend Developer</option>
+        <option value="Backend Developer">Backend Developer</option>
+        <option value="Data Scientist">Data Scientist</option>
+        <option value="AI/ML Engineer">AI/ML Engineer</option>
+        <option value="App Developer">App Developer</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-4">Get Learning Path</button>
+  </form>
+
+  <hr class="my-5" />
+
+  <h3>Or Test Your Skill with a Quiz 👇</h3>
+  <form action="{% url 'quiz_view' %}" method="get" class="mt-3">
+    <div class="form-group">
+      <label for="quiz_skill">Choose a Skill to Test:</label>
+      <select class="form-control" name="skill" id="quiz_skill" required>
+        <option value="" disabled selected>Choose your skill</option>
+        {% for s in skills %}
+        <option value="{{ s }}">{{ s|capfirst }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <button type="submit" class="btn btn-success mt-3">Start Quiz</button>
+  </form>
+</div>
+{% endblock %}

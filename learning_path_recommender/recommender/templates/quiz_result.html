@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Quiz Result</h2>
+  <p><strong>Skill:</strong> {{ skill|title }}</p>
+  <p><strong>Goal:</strong> {{ goal|title }}</p>
+  <p><strong>Score:</strong> {{ score }} / {{ total }}</p>
+
+  <h4 class="mt-4">Recommended Courses:</h4>
+  <ul>
+    {% for course in courses %}
+      <li>{{ course }}</li>
+    {% empty %}
+      <li>No course found for this level.</li>
+    {% endfor %}
+  </ul>
+
+  <h4 class="mt-4">YouTube Links:</h4>
+  <ul>
+    {% for yt in youtube_links %}
+      <li><a href="{{ yt }}" target="_blank">{{ yt }}</a></li>
+    {% empty %}
+      <li>No YouTube links found.</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'home' %}" class="btn btn-primary mt-3">Back to Home</a>
+</div>
+{% endblock %}
